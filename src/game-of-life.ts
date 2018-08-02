@@ -102,7 +102,8 @@ export function getLiveNeighbors(cellIndex: number, world: IWorld): number {
   for (let r = -1; r <= 1; r++) {
     for (let c = -1; c <= 1; c++) {
       const index = (cellRow + r) * world.columns + (cellColumn + c)
-      if (indices.find((i: number) => i === index) === undefined) {
+      // if (!indices.find((i: number) => i === index)) { // bug
+      if (indices.find((i: number) => i === index) === undefined) { // correct
         if (isValidIndex(index, world.grid) && isLiveCell(world.grid[index])) {
           liveNeighbors++
           indices.push(index)
